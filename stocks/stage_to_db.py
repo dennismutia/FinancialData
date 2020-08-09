@@ -35,4 +35,8 @@ class StageToDB:
             # write to db
             engine = create_engine(self.db_connection_string)
             data.to_sql(self.table_name, engine, if_exists=self.if_table_exists_argument, chunksize=1000)
-            
+
+    def stage_sector_data(self):
+        sectors = pd.read_excel(r'.\data\isin-codes_2020.xlsx', sheet_name='Sheet1')
+        engine = create_engine(self.db_connection_string)
+        sectors.to_sql('s_SectorData', engine, if_exists=self.if_table_exists_argument, chunksize=1000)

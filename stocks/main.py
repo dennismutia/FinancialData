@@ -20,3 +20,12 @@ stage_data = StageToDB(
     if_table_exists_argument = 'append',
     table_name = 'daily_trading_data'
 ).stage_to_db()
+
+stage_sector = StageToDB(
+    path = import_path,
+    files = os.listdir(import_path),
+    db_connection_string = db_connection_string,
+    if_table_exists_argument = 'append',
+    table_name = 'daily_trading_data'
+).stage_sector_data()
+
