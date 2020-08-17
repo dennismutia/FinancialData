@@ -63,5 +63,5 @@ The following technologies were chosen for this project:
 4. Run `python etl.py` to execute the etl.py file which calls the modules in the stocks folder to execute an etl process
 
 ## Suggested future improvements
-- Configure project to use *Apache Airflow*. Currently using windows machine and configuring airflow is a chore but can be done using windows subsystem for linux.
+- Refactor project to use *Apache Airflow*. Currently using windows machine and configuring airflow is a chore but can be done using windows subsystem for linux.
 - Consider using *S3* to store the raw html files for scale, and *a Redshift cluster* for dimension modelling. 
