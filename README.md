@@ -18,15 +18,38 @@ The data model uses a star schema with 1 fact table and 2 dimension tables
 
 fact stock price
 
-![fact stock price](/fact_StockPrice.png)
+|field  	    |type	    |description                        |
+|---------------|-----------|-----------------------------------|
+|code	        |varchar	|company ticker symbol              |
+|Low	        |float	    |lowest price during the day        |
+|High	        |float	    |highest price during the day       |
+|Price	        |float	    |closing stock price for the day    |
+|Previous	    |float	    |previous day closing price         |
+|adjusted_price	|float	    |adjsuted price                     |
+|price_date	    |date       |date the price applies to          |
+
 
 dim company details
 
-![dim company details](/dim_CompanyDetails.png)
+|field	|type	    |description                    |
+|-------|-----------|-------------------------------|
+|code	|varchar	|company ticker symbol          |
+|name	|varchar	|company name                   |
+|sector	|varchar	|sector the company belongs to  |
+
 
 dim dates
 
-![dim dates](/dim_Dates.png)
+|field	    |type	|description        |
+|-----------|-------|-------------------|
+|date	    |date	|date               |
+|day	    |int	|day name           |
+|week	    |int	|week number        |
+|month	    |int	|month number       |
+|quarter	|int	|quarter of the year|
+|year	    |int	|year               |
+|year_half	|int	|half of the year   |
+
 
 ## Technologies
 The following technologies were chosen for this project:
