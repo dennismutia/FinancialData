@@ -1,3 +1,7 @@
 pywebcopy
 pandas
 xlrd
+sqlalchemy
+datetime
+numpy
+pywebcopy
