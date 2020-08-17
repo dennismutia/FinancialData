@@ -17,12 +17,15 @@ This project scrapes end of day Kenyan security prices data from a website and c
 The data model uses a star schema with 1 fact table and 2 dimension tables
 
 fact stock price\
+
 ![fact stock price](/fact_StockPrice.png)
 
 dim company details\
+
 ![dim company details](/dim_CompanyDetails.png)
 
 dim dates\
+
 ![dim dates](/dim_Dates.png)
 
 ## Technologies
