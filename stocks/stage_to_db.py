@@ -8,6 +8,16 @@ from sqlalchemy import create_engine
 import sqlalchemy
 
 class StageToDB:
+    '''
+    This class stages the daily stock data in the html files to a database table
+
+    input:
+    path                        :   path to the location of files to be stages
+    files                       :   a list containing the files to be imported
+    db_connection_string        :   odbc connection string to sql server database
+    if_table_exists_argument    :   argument on what to do if the table created already exists, replace or append
+    table_name                  :   the name of the table to be created
+    '''
     def __init__(self, path, files, db_connection_string,  if_table_exists_argument, table_name):
         self.path = path
         self.files = files
@@ -16,6 +26,9 @@ class StageToDB:
         self.table_name = table_name
 
     def stage_to_db(self):
+        '''
+        Stage html files
+        '''
         for file in self.files:
             data = pd.read_html(os.path.join(self.path, file))[3]
 
@@ -40,6 +53,9 @@ class StageToDB:
             data.to_sql(self.table_name, engine, if_exists=self.if_table_exists_argument, chunksize=1000, index=False)
 
     def stage_sector_data(self):
+        '''
+        Stage excel file with company details
+        '''
         sectors = pd.read_excel(r'.\data\isin-codes_2020.xlsx', sheet_name='Sheet1')
         engine = create_engine(self.db_connection_string)
         sectors.to_sql('s_SectorData', engine, if_exists=self.if_table_exists_argument, chunksize=1000)
