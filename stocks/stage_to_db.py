@@ -1,9 +1,11 @@
 import os
+import numpy as np
 import pandas as pd
 import datetime
 import pyodbc
 import lxml
 from sqlalchemy import create_engine
+import sqlalchemy
 
 class StageToDB:
     def __init__(self, path, files, db_connection_string,  if_table_exists_argument, table_name):
@@ -30,11 +32,12 @@ class StageToDB:
 
             # Add filename and date
             data['filename'] = file
+            data['price_date'] = datetime.datetime.strptime(file[10:18],'%Y%m%d').strftime('%Y-%m-%d')
             data['extraction_date'] = datetime.datetime.fromtimestamp(os.path.getctime(os.path.join(self.path, file))).strftime('%Y-%m-%d %H:%M:%S')
 
             # write to db
             engine = create_engine(self.db_connection_string)
-            data.to_sql(self.table_name, engine, if_exists=self.if_table_exists_argument, chunksize=1000)
+            data.to_sql(self.table_name, engine, if_exists=self.if_table_exists_argument, chunksize=1000, index=False)
 
     def stage_sector_data(self):
         sectors = pd.read_excel(r'.\data\isin-codes_2020.xlsx', sheet_name='Sheet1')

@@ -4,5 +4,5 @@ e&&!r.relative[a[d].type];d++);return R(1<g&&G(q),1<g&&n(a.slice(0,g-1).concat({
 * AerWebCopy Engine [version 6.3.0]
 * Copyright Aeroson Systems & Co.
 * File mirrored from https://cdn-ke.mystocks.co.ke/res/mystocks_core_$20200323120557.js
-* At UTC time: 2020-08-08 19:58:49.288978
+* At UTC time: 2020-08-17 18:04:01.216471
 */
