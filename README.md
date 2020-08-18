@@ -57,10 +57,12 @@ The following technologies were chosen for this project:
 * Python 3.7
 
 ## Build Instructions
-1. Clone the repository
-2. Navigate to the root folder and run `pip install -r requirements.txt` to install the required python packages in the requirements.txt file
-3. Edit the start_date and end_date variables in *stocks\etl.py* file to specify the date ranges to be scraped by the etl script.
-4. Run `python etl.py` to execute the etl.py file which calls the modules in the stocks folder to execute an etl process
+1. Create a database in SQL server whether the data will be loaded into.
+2. Create an ODBC connection to the database created above. Call it *findata*.
+3. Clone the repository
+4. Navigate to the root folder and run `pip install -r requirements.txt` to install the required python packages in the requirements.txt file
+5. Edit the start_date and end_date variables in *stocks\etl.py* file to specify the date ranges to be scraped by the etl script.
+6. Run `python etl.py` to execute the etl.py file which calls the modules in the stocks folder to execute an etl process
 
 ## Suggested future improvements
 - Refactor project to use *Apache Airflow*. Currently using windows machine and configuring airflow is a chore but can be done using windows subsystem for linux.
