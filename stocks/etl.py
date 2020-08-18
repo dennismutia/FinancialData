@@ -1,8 +1,10 @@
 from download_html import ScrapData
 from stage_to_db import StageToDB
+from create_tables import CreateFactDimTables
+from data_quality import DataQualityTests
 import os
 import pyodbc
-from create_tables import CreateFactDimTables
+
 import sqlalchemy
 
 download_path = r'.\data\raw_html'
@@ -55,6 +57,13 @@ company_date_table_load = CreateFactDimTables(
     if_table_exists_argument = 'replace'
 ).create_date_dim_table()
 
+dq_test = DataQualityTests(
+    db_connection_string = db_connection_string
+).test_staging()
+
+dq_test_date_range = DataQualityTests(
+    db_connection_string = db_connection_string
+).test_date_dim_completeness()
 
 
 

@@ -15,6 +15,7 @@ class CreateFactDimTables:
     db_connection_string - odbc connection string to sql server
     if_table_exists_argument - specifies whether to append or replace data if the table being created already exists
     '''
+    
     def __init__(self, db_connection_string, if_table_exists_argument):
         self.db_connection_string = db_connection_string
         self.if_table_exists_argument = if_table_exists_argument
