@@ -79,7 +79,9 @@ After setting up the build environment, execute the followin steps to run the et
 
 ### Logical scenarios
 **The data was increased by 100x** . A scalable deployment of sql server would have to be used, eg. a cloud solution, or resources increased to accomodate the increase size in data. Another approach is to use an auto-scaling solution such as AWS Redshift and S3.
+
 **The pipelines would be run on a daily basis by 7 am every day**. This can be configured using Apache Airflow DAG definitions and set up for backfills as well.
+
 **The database needed to be accessed by 100+ people**. If the deployment is done on an auto-scaling architecture, this should be perfectly possible.
 
 ## Project files
