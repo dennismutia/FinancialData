@@ -86,7 +86,7 @@ A scalable deployment of sql server would have to be used, eg. a cloud solution,
 **The pipelines would be run on a daily basis by 7 am every day**
 This can be configured using Apache Airflow DAG definitions and set up for backfills as well. I would recommend running this on a linux vm if working on Windows, or enabling Linux Subsystem for windows to be able to run Airflow effectively.
 
-**The database needed to be accessed by 100+ people**. Additional compute resources, especially CPUs and RAM, will be required the more people are reading from the database in order to get a fast experience. By using a distributed implementation of the database, the dim tables can be replicated across clusters and the fact tables partitioned to get faster experiences with query performance. A could implementation of the same can be considered since it scales resources automatically depending on requirements.
+**The database needed to be accessed by 100+ people**. Additional compute resources, especially CPUs and RAM, will be required the more people are reading from the database in order to get a fast experience. By using a distributed implementation of the database, the dim tables can be replicated across clusters and the fact tables partitioned to get faster experiences with query performance. A cloud implementation of the same can be considered since it scales resources automatically depending on requirements.
 
 If working on premise, using faster SSDs instead of hard disks should also help with the read speeds from the many users that will be accessing the data warehouse.
 
