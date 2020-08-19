@@ -80,11 +80,16 @@ After setting up the build environment, execute the followin steps to run the et
 6. Run `python etl.py` to execute the etl.py file which calls the modules in the stocks folder to execute an etl process
 
 ### Logical scenarios
-**The data was increased by 100x** . A scalable deployment of sql server would have to be used, eg. a cloud solution, or resources increased to accomodate the increase size in data. Another approach is to use an auto-scaling solution such as AWS Redshift and S3.
+**The data was increased by 100x** 
+A scalable deployment of sql server would have to be used, eg. a cloud solution, or resources increased to accomodate the increase size in data. This is to cater for the increased volume of data which will require additional storage. Another approach is to use an auto-scaling solution such as AWS Redshift and S3.
 
-**The pipelines would be run on a daily basis by 7 am every day**. This can be configured using Apache Airflow DAG definitions and set up for backfills as well.
+**The pipelines would be run on a daily basis by 7 am every day**
+This can be configured using Apache Airflow DAG definitions and set up for backfills as well. I would recommend running this on a linux vm if working on Windows, or enabling Linux Subsystem for windows to be able to run Airflow effectively.
 
-**The database needed to be accessed by 100+ people**. If the deployment is done on an auto-scaling architecture, this should be perfectly possible.
+**The database needed to be accessed by 100+ people**. Additional compute resources, especially CPUs and RAM, will be required the more people are reading from the database in order to get a fast experience. By using a distributed implementation of the database, the dim tables can be replicated across clusters and the fact tables partitioned to get faster experiences with query performance. A could implementation of the same can be considered since it scales resources automatically depending on requirements.
+
+If working on premise, using faster SSDs instead of hard disks should also help with the read speeds from the many users that will be accessing the data warehouse.
+
 
 ## Project files
 - download_html.py: scrapes web data and stores in a folder as html files
