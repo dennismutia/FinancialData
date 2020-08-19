@@ -63,12 +63,14 @@ dim dates
 
 ## Step 4: Run ETL to model the data
 
+### Technologies used
 The following technologies have been used to run the ETL process:
-* Microsoft SQL Server 2019 :   It is a suitable RDBMS if running on windows and you already have access to a sql server. It is also cheaper to prototype on a sql server before migrating to a cloud solution such as AWS S3 and Redshift. In my case, I found it faster to develop on SQL server since is was already installed and configured and intergrated well with Active Directory for auth.
-* Python 3.7                :   Python is preferred for easy intergration with Apache Airflow in the future. Python also also comes with pandas library for easy data cleansing of raw html files.
+* *Microsoft SQL Server 2019* :   It is a suitable RDBMS if running on windows and you already have access to a sql server. It is also cheaper to prototype on a sql server before migrating to a cloud solution such as AWS S3 and Redshift. In my case, I found it faster to develop on SQL server since is was already installed and configured and intergrated well with Active Directory for auth.
+* *Python 3.7*                :   Python is preferred for easy intergration with Apache Airflow in the future. Python also also comes with pandas library for easy data cleansing of raw html files.
 
-The above technologies are also very widely used in the industry especially for prototyping and building scalable applications. Support and documentation is highly and readily available online. SQL server also has a free version for prototyping and building non-production databases.
+The above technologies are also very widely used in the industry especially for prototyping and building scalable applications. Support and documentation is highly and readily available online. SQL server also has a free version for prototyping and building non-production databases. Python 2.7 is being deprecated hence the preference for Python 3.
 
+### Build Instructions
 After setting up the build environment, execute the followin steps to run the etl pipeline.
 1. Create a database in SQL server whether the data will be loaded into.
 2. Create an ODBC connection to the database created above. Call it *findata*.
