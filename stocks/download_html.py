@@ -29,8 +29,9 @@ class ScrapData:
         end_date = datetime.datetime.strptime(self.end_date, '%Y%m%d')
 
         delta = end_date - start_date
+        
+        # create a list of dates for which data is to be downloaded from the website link
         dates = []
-
         for i in range(delta.days + 1):
             dt = start_date + datetime.timedelta(days=i)
             dates.append(str(dt.strftime("%Y%m%d")))

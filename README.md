@@ -96,3 +96,4 @@ After setting up the build environment, execute the followin steps to run the et
 ## Suggested future improvements
 - Refactor project to use *Apache Airflow*. Currently using windows machine and configuring airflow is a chore but can be done using windows subsystem for linux.
 - Consider using *S3* to store the raw html files for scale, and *a Redshift cluster* for dimension modelling. 
+- Add logging functionality

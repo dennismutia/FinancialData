@@ -21,6 +21,7 @@ class CreateFactDimTables:
         self.if_table_exists_argument = if_table_exists_argument
 
     def create_company_dim_table(self):
+        # create the company dimension table with company details
         query = '''
         SELECT 
             DISTINCT d.[CODE], d.NAME, s.SECTOR      
@@ -31,6 +32,7 @@ class CreateFactDimTables:
         df.to_sql('d_CompanyDetails', self.db_connection_string, if_exists=self.if_table_exists_argument, chunksize=1000, index=False)
 
     def create_stock_data_transactions_fact_table(self):
+        # create the stock transactions table with closing stock prices per day
         query = '''
         SELECT
             CODE as code, Low, High, Price, Previous, [Adjusted Price] as adjusted_price, price_date
@@ -40,6 +42,7 @@ class CreateFactDimTables:
         df.to_sql('f_StockPrice', self.db_connection_string, if_exists=self.if_table_exists_argument, chunksize=1000, index=False)
 
     def create_date_dim_table(self):
+        # Create a master calendar using the date ranges in the stock transactions table
         sql_query = 'select min(price_date) as start_date, max(price_date) as end_date from daily_trading_data'
         date_range = pd.read_sql(sql_query, db_connection_string)
         start_date = date_range['start_date'][0]

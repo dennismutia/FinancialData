@@ -19,6 +19,7 @@ conn = pyodbc.connect('Driver={SQL Server};'
 
 db_connection_string = f"mssql+pyodbc://findata"
 
+# Call function to scrape data
 download_data = ScrapData(
     start_date = '20200801',
     end_date = '20200807',
@@ -26,6 +27,7 @@ download_data = ScrapData(
 )
 download_data.download_html()
 
+# call function to stage downloaded html data
 stage_data = StageToDB(
     path = import_path,
     files = os.listdir(import_path),
@@ -34,6 +36,7 @@ stage_data = StageToDB(
     table_name = 'daily_trading_data'
 ).stage_to_db()
 
+# call function to stage company details data
 stage_sector = StageToDB(
     path = import_path,
     files = os.listdir(import_path),
@@ -42,25 +45,30 @@ stage_sector = StageToDB(
     table_name = 'daily_trading_data'
 ).stage_sector_data()
 
+# Call function to crate fact table
 stock_data_table_load = CreateFactDimTables(
     db_connection_string = db_connection_string,
     if_table_exists_argument = 'append'
 ).create_stock_data_transactions_fact_table()
 
+# call function to create company details dim table
 company_data_table_load = CreateFactDimTables(
     db_connection_string = db_connection_string,
     if_table_exists_argument = 'replace'
 ).create_company_dim_table()
 
+# call function to create a master calendar dimension table
 company_date_table_load = CreateFactDimTables(
     db_connection_string = db_connection_string,
     if_table_exists_argument = 'replace'
 ).create_date_dim_table()
 
+# Perform data quality checks on fact table
 dq_test = DataQualityTests(
     db_connection_string = db_connection_string
 ).test_staging()
 
+# Perform data quality test on master calandar
 dq_test_date_range = DataQualityTests(
     db_connection_string = db_connection_string
 ).test_date_dim_completeness()
