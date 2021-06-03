@@ -11,18 +11,21 @@ download_path = r'.\data\raw_html'
 import_path =  r'.\data\raw_html\live.mystocks.co.ke\live.mystocks.co.ke\price_list'
 
 '''
-conn = pyodbc.connect('Driver={SQL Server};'
-                      'Server=KEDMUTIA;'
+conn = pyodbc.connect('Driver={PostgreSQL Unicode};'
+                      'Server=localhost;'
                       'Database=FinancialData;'
-                      'Trusted_Connection=yes;')
+                      'UID=postgres;'
+                      'PWD=StillIRise1!'
+                      'PORT=5432;'
+                      )
 '''
 
 db_connection_string = f"mssql+pyodbc://findata"
 
 # Call function to scrape data
 download_data = ScrapData(
-    start_date = '20200801',
-    end_date = '20200807',
+    start_date = '20190801',
+    end_date = '20190807',
     path = download_path
 )
 download_data.download_html()
