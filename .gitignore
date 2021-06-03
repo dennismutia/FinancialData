@@ -1,2 +1,3 @@
 .vscode/
-data/raw_html
+data/raw_html/
+stocks/__pycache__/
