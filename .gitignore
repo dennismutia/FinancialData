@@ -1,3 +1,4 @@
 .vscode/
 data/raw_html/
 stocks/__pycache__/
+stocks/temp.py
