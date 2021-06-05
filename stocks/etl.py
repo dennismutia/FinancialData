@@ -4,24 +4,19 @@ from create_tables import CreateFactDimTables
 from data_quality import DataQualityTests
 import os
 import pyodbc
-
 import sqlalchemy
+from sqlalchemy import create_engine
 
-download_path = r'.\data\raw_html'
-import_path =  r'.\data\raw_html\live.mystocks.co.ke\live.mystocks.co.ke\price_list'
+base_dir = os.getcwd()
+
+download_path = os.path.join(base_dir, 'data/raw_html')
+import_path =  os.path.join(base_dir, 'data/raw_html/live.mystocks.co.ke/live.mystocks.co.ke/price_list')
+
+db_connection_string = 'postgresql://postgres:postgres@localhost:5432/financialdata'
+
+#db_connection_string = f"mssql+pyodbc://findata"
 
 '''
-conn = pyodbc.connect('Driver={PostgreSQL Unicode};'
-                      'Server=localhost;'
-                      'Database=FinancialData;'
-                      'UID=postgres;'
-                      'PWD=StillIRise1!'
-                      'PORT=5432;'
-                      )
-'''
-
-db_connection_string = f"mssql+pyodbc://findata"
-
 # Call function to scrape data
 download_data = ScrapData(
     start_date = '20190801',
@@ -29,6 +24,7 @@ download_data = ScrapData(
     path = download_path
 )
 download_data.download_html()
+'''
 
 # call function to stage downloaded html data
 stage_data = StageToDB(
@@ -39,6 +35,7 @@ stage_data = StageToDB(
     table_name = 'daily_trading_data'
 ).stage_to_db()
 
+'''
 # call function to stage company details data
 stage_sector = StageToDB(
     path = import_path,
@@ -76,6 +73,4 @@ dq_test_date_range = DataQualityTests(
     db_connection_string = db_connection_string
 ).test_date_dim_completeness()
 
-
-
-
+'''
