@@ -46,8 +46,9 @@ class ScrapData:
                 save_webpage(
                     url=os.path.join('https://live.mystocks.co.ke/price_list/',date),
                     project_folder=self.path)
-            except:
-                pass
-
+            except Exception as e:
+                print(e)
+'''
     if __name__ == "__main__":
         self.download_html(self)
+'''
