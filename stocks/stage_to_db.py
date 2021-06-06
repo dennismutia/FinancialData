@@ -56,6 +56,11 @@ class StageToDB:
         '''
         Stage excel file with company details
         '''
-        sectors = pd.read_excel(r'.\data\isin-codes_2020.xlsx', sheet_name='Sheet1')
-        engine = create_engine(self.db_connection_string)
-        sectors.to_sql('s_SectorData', engine, if_exists=self.if_table_exists_argument, chunksize=1000)
+        try:
+            path_sector_data = os.path.join(os.getcwd(), 'data/isin-codes_2020.xlsx')
+            sectors = pd.read_excel(path_sector_data, sheet_name='Sheet1')
+            engine = create_engine(self.db_connection_string)
+            sectors.to_sql('s_SectorData', engine, if_exists=self.if_table_exists_argument, chunksize=1000)
+            print("Successfully staged sector master data to db")
+        except Exception as e:
+            print(e)
