@@ -8,3 +8,4 @@ pywebcopy
 apache-airflow
 Flask
 pyodbc
+openpyxl
